@@ -11,7 +11,8 @@ class LunchtablesController < ApplicationController
   def create
     @lunchtable = Lunchtable.new(params[:id])
     x = lunchtable_params
-    x[:total] = lunchtable_params[:price].to_i * @lunchtable.users.length
+    x[:total] = (lunchtable_params[:price].to_f * @lunchtable.users.length).to_f
+    x[:price] = x[:price].to_i
     if @lunchtable.save(x)
       Log.create(info: "#{current_user.name} created the #{l(@lunchtable.created_at,format: :short)} table.")
       redirect_to @lunchtable, notice: "Success!!1"
@@ -48,7 +49,8 @@ class LunchtablesController < ApplicationController
     @lunchtable = Lunchtable.find(params[:id])
     x = lunchtable_params
     prevprice = @lunchtable.price
-    x[:total] = lunchtable_params[:price].to_i * @lunchtable.users.length
+    x[:total] = (lunchtable_params[:price].to_i * @lunchtable.users.length).to_f
+    x[:price] = x[:price].to_i
     if @lunchtable.update(x)
       Log.create(info: "#{current_user.name} updated the price from #{prevprice} to #{x[:price]}")
       redirect_to action: :show, notice: "Success!!1"
