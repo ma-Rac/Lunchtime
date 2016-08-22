@@ -13,7 +13,7 @@ class LunchtablesController < ApplicationController
     x = lunchtable_params
     x[:total] = (lunchtable_params[:price].to_f * @lunchtable.users.length).to_f
     x[:price] = x[:price].to_i
-    if @lunchtable.save(x)
+    if @lunchtable.update(x)
       Log.create(info: "#{current_user.name} created the #{l(@lunchtable.created_at,format: :short)} table.")
       redirect_to @lunchtable, notice: "Success!!1"
     else
