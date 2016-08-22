@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lunchtime</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= link_to "Logs", logs_index_path %>
+  <%= link_to "Tables", lunchtables_path %>
+  <% if user_signed_in? %>
+  <%= link_to "Sign Out", destroy_user_session_path, :method => :delete  %>
+  Current balance: <%= current_user.balance %>
+  <%else%>
+  <%= link_to "Sign in", new_user_session_path%>
+  <%end%>
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+<%= yield %>
+
+</body>
+</html>

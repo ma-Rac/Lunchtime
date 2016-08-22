@@ -1,0 +1,2 @@
+module LunchtablesHelper
+end

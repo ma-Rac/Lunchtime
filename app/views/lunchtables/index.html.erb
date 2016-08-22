@@ -1,0 +1,6 @@
+<h1>Open Lunch Tables</h1>
+<h2><%= link_to "New Table", new_lunchtable_path %></h2>
+<% @table.each do |post| %>
+<h2><%= link_to l(post.created_at,format: :short), post %></h2>
+<h5><%=post.users.length %> People joined this table</h5> <br>
+<%end%>

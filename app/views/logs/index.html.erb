@@ -1,0 +1,5 @@
+<h1>Horrible Logs</h1>
+<%= link_to "Flush", logs_destroy_path %><br>
+<% @logs.each do |log| %>
+<%= log.info %> <br>
+<%end%>

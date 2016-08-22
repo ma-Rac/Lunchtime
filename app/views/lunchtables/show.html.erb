@@ -1,0 +1,22 @@
+<h1><%=l @lunchtable.created_at, format: :short%> Table</h1>
+
+<h2>Price per capita: <%=@lunchtable.price%> <%= link_to "Change", edit_lunchtable_path( @lunchtable ) %>  |  Total Cost: <%=@lunchtable.total %></h2>
+
+<h2>Joined:</h2>
+<% @lunches.each do |post| %>
+<strong><%= post.user.name %> paid: <%= post.paid %>
+  <%if post.user_id == current_user.id %>
+    <%= link_to "Pay", edit_lunch_path(post)%>
+    <%=link_to "Leave", post, method: :delete, data: { confirm: "Are you sure?" } %>
+  <%end%>
+
+  </strong><br>
+<%end%>
+
+<%= form_for @lunch do |f| %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= hidden_field_tag(:lunchtable_id, "#{@lunchtable.id}") %>
+        <%= f.submit "Join" %>
+<% end %>
+
+<%=link_to "Close Table", @lunchtable, method: :delete, data: { confirm: "Are you sure?" } %>
