@@ -9,8 +9,9 @@ class User < ActiveRecord::Base
   has_many :lunchtables, through: :lunches
 
   def update_bal(cost, paid)
-    new_balance = self.balance + paid - cost
+    new_balance = self.balance.to_f + paid.to_f - cost.to_f
     self.update(balance: new_balance)
   end
+
 
 end
