@@ -1,7 +1,8 @@
 class LunchtablesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @table = Lunchtable.all
+    @tables = Lunchtable.all
+    render component: 'Tablelist', props: { tables: @tables }, tag: 'span', class: 'todo'
   end
 
   def new
@@ -25,6 +26,8 @@ class LunchtablesController < ApplicationController
     @lunchtable = Lunchtable.find(params[:id])
     @lunches = Lunch.where(lunchtable: @lunchtable)
     @lunch = @lunches.new
+    render component: 'TableShow', props: { table: @lunchtable, users: @lunchtable.users, lunches: @lunches, current_user: current_user.id }, tag: 'span', class: 'table'
+
   end
 
   def destroy
