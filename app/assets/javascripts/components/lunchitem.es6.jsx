@@ -13,6 +13,7 @@ class LunchItem extends React.Component {
 
   routePay(){
     console.log("test")
+    window.location = "/lunches/"+this.props.id+"/edit"
   }
   render(){
     let username = this.findUser()[0]
@@ -20,7 +21,7 @@ class LunchItem extends React.Component {
     return(
       <div>
         <div>{username.name} paid:{this.props.paid}</div>
-          { component.props.current_user !== null && component.props.current_user == component.props.user && <button onClick={this.routePay}>Pay!</button> }
+          { component.props.current_user !== null && component.props.current_user == component.props.user && <button onClick={this.routePay.bind(this)}>Pay!</button> }
       </div>
     )
   }

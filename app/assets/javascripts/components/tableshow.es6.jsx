@@ -11,7 +11,7 @@ class TableShow extends React.Component {
         <h3>People at this table:</h3>
         <ul>
           {this.props.lunches.map(function(lunch){
-            return <LunchItem key={lunch.id} user={lunch.user_id} paid={lunch.paid} users={component.props.users} current_user={component.props.current_user}/>
+            return <LunchItem key={lunch.id} user={lunch.user_id} paid={lunch.paid} users={component.props.users} current_user={component.props.current_user} id={lunch.id}/>
           })}
         </ul>
       </div>
